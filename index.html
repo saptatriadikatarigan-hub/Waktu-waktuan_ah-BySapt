@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; media-src 'self'; form-action 'none'; base-uri 'self';">
+
+  <title>Sapta Dashboard</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="v.css">
+</head>
+<body>
+
+  <!-- Canvas background pixel -->
+  <canvas id="pixel-bg"></canvas>
+
+  <header>
+    <h1 id="greeting"></h1>
+    <p id="clock"></p>
+    <p id="tanggal"></p>
+    <p id="umur-web"></p>
+  </header>
+
+  <main>
+
+    <section id="timer-section">
+      <h2>Focus Timer</h2>
+
+      <form id="timer-form">
+        <label for="input-menit">Durasi (menit)</label>
+        <input id="input-menit" type="text" value="25" maxlength="3" autocomplete="off">
+        <button type="submit">Atur</button>
+      </form>
+
+      <p id="time">25:00</p>
+      <nav>
+        <button id="start">Start</button>
+        <button id="stop">Pause</button>
+        <button id="reset">Reset</button>
+      </nav>
+      <p id="timer-status">Siap fokus</p>
+    </section>
+
+    <section id="todo-section">
+      <h2>Daftar Tugas</h2>
+      <form id="todo-form">
+        <input id="todo-input" type="text" placeholder="Tambah tugas..." maxlength="200" autocomplete="off">
+        <input id="todo-deadline" type="datetime-local">
+        <button type="submit">Tambah</button>
+      </form>
+      <ul id="todo-list"></ul>
+      <p id="todo-empty">Belum ada tugas.</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; <span id="tahun-copyright"></span> Sapta. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

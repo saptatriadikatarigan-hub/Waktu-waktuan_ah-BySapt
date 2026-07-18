@@ -1,0 +1,422 @@
+/* ================================
+   RESET
+================================ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ================================
+   CUSTOM CURSOR
+================================ */
+
+/* Kursor default dan semua elemen: Rakan feather */
+* {
+  cursor: url('cursor/Rakan Q feather.cur'), auto;
+}
+
+/* Tombol dan elemen klikable: feather juga, fallback pointer */
+button,
+input[type="checkbox"],
+label {
+  cursor: url('cursor/Rakan Q feather.cur'), pointer;
+}
+
+/* Input teks */
+input[type="text"],
+input[type="datetime-local"] {
+  cursor: url('cursor/Rakan Q feather.cur'), text;
+}
+
+/* ================================
+   BODY
+================================ */
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #050510;
+  color: #e0e7ff;
+  padding: 40px 16px;
+  min-height: 100vh;
+}
+
+/* Canvas pixel background */
+#pixel-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Semua konten harus di atas canvas */
+header, main, footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* ================================
+   HEADER
+================================ */
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* Logo */
+#logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+#logo svg {
+  display: block;
+}
+
+#logo-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #4f46e5;
+  letter-spacing: 1px;
+}
+
+header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #e0e7ff;
+  letter-spacing: 0.5px;
+}
+
+header p {
+  font-size: 15px;
+  color: #818cf8;
+  margin-top: 6px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+#tanggal {
+  font-size: 14px;
+  color: #a5b4fc;
+  margin-top: 4px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+#umur-web {
+  font-size: 12px;
+  color: #4f46e5;
+  margin-top: 2px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+/* ================================
+   MAIN - GRID 2 KOLOM
+================================ */
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ================================
+   SECTION (CARD)
+================================ */
+section {
+  background-color: rgba(15, 15, 40, 0.85);
+  border-radius: 20px;
+  border: 1px solid #2e3270;
+  box-shadow: 0 4px 30px rgba(99, 102, 241, 0.18), 0 0 0 1px rgba(99,102,241,0.08);
+  padding: 28px;
+  backdrop-filter: blur(2px);
+}
+
+section h2 {
+  font-size: 13px;
+  font-weight: 700;
+  color: #818cf8;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #2e3270;
+  padding-bottom: 10px;
+}
+
+/* ================================
+   FOCUS TIMER
+================================ */
+#timer-section {
+  text-align: center;
+}
+
+/* Form pengatur durasi */
+#timer-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+#timer-form label {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+#input-menit {
+  width: 64px;
+  border: 1px solid #2e3270;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 14px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  text-align: center;
+  outline: none;
+  color: #e0e7ff;
+  background-color: #0f0f2a;
+  -moz-appearance: textfield;
+}
+
+#input-menit::-webkit-outer-spin-button,
+#input-menit::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#input-menit:focus {
+  border-color: #6366f1;
+  background-color: #ffffff;
+}
+
+#timer-form button[type="submit"] {
+  background-color: #e0e7ff;
+  color: #4338ca;
+  padding: 6px 14px;
+  font-size: 13px;
+}
+
+#timer-form button[type="submit"]:hover {
+  background-color: #c7d2fe;
+}
+
+#time {
+  font-size: 72px;
+  font-weight: 700;
+  color: #a5b4fc;
+  letter-spacing: 4px;
+  margin-bottom: 24px;
+  font-variant-numeric: tabular-nums;
+}
+
+#timer-section nav {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+#timer-status {
+  font-size: 13px;
+  color: #a5b4fc;
+  letter-spacing: 0.5px;
+}
+
+/* ================================
+   DAFTAR TUGAS
+================================ */
+#todo-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+#todo-input {
+  flex: 1;
+  min-width: 120px;
+  border: 1px solid #2e3270;
+  border-radius: 10px;
+  padding: 9px 14px;
+  font-size: 14px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  outline: none;
+  color: #e0e7ff;
+  background-color: #0f0f2a;
+  transition: border-color 0.2s;
+}
+
+#todo-input:focus {
+  border-color: #6366f1;
+  background-color: #13133a;
+}
+
+#todo-input::placeholder {
+  color: #3730a3;
+}
+
+#todo-deadline {
+  border: 1px solid #2e3270;
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-size: 13px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  outline: none;
+  color: #e0e7ff;
+  background-color: #0f0f2a;
+  transition: border-color 0.2s;
+}
+
+#todo-deadline:focus {
+  border-color: #6366f1;
+  background-color: #13133a;
+}
+
+#todo-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+#todo-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #0a0a20;
+  border: 1px solid #2e3270;
+  border-radius: 10px;
+  padding: 10px 14px;
+  transition: border-color 0.2s;
+}
+
+#todo-list li:hover {
+  border-color: #6366f1;
+}
+
+#todo-list li span {
+  flex: 1;
+  font-size: 14px;
+  color: #c7d2fe;
+}
+
+#todo-list li span.selesai {
+  text-decoration: line-through;
+  color: #3730a3;
+}
+
+.deadline {
+  font-size: 11px;
+  color: #a5b4fc;
+  background-color: #1e1b4b;
+  border-radius: 6px;
+  padding: 2px 7px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.deadline--lewat {
+  color: #f87171;
+  background-color: #450a0a;
+}
+
+#todo-empty {
+  font-size: 13px;
+  color: #a5b4fc;
+  text-align: center;
+  padding: 20px 0;
+}
+
+/* ================================
+   TOMBOL
+================================ */
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 9px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  cursor: url('cursor/Rakan Q feather.cur'), pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* Tombol Start */
+#start {
+  background-color: #6366f1;
+  color: #ffffff;
+}
+
+#start:hover {
+  background-color: #4f46e5;
+}
+
+/* Tombol Pause dan Reset */
+#stop,
+#reset {
+  background-color: #e0e7ff;
+  color: #4338ca;
+}
+
+#stop:hover,
+#reset:hover {
+  background-color: #c7d2fe;
+}
+
+/* Tombol Tambah di form */
+#todo-form button[type="submit"] {
+  background-color: #6366f1;
+  color: #ffffff;
+  padding: 9px 16px;
+}
+
+#todo-form button[type="submit"]:hover {
+  background-color: #4f46e5;
+}
+
+/* Tombol Hapus di setiap item */
+.tombol-hapus {
+  background-color: transparent;
+  color: #f87171;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 6px;
+}
+
+.tombol-hapus:hover {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+/* ================================
+   FOOTER
+================================ */
+footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 16px;
+  font-size: 12px;
+  color: #a5b4fc;
+  border-top: 1px solid #e0e7ff;
+}
