@@ -3,9 +3,6 @@ var clockEl    = document.getElementById('clock');
 var tanggalEl  = document.getElementById('tanggal');
 var umurWebEl  = document.getElementById('umur-web');
 
-// ╔══════════════════════════════════════════╗
-// ║  NEON CYBER GRID — INSANE EDITION       ║
-// ╚══════════════════════════════════════════╝
 var canvas = document.getElementById('pixel-bg');
 var ctx    = canvas.getContext('2d');
 var W = canvas.width  = window.innerWidth;
@@ -148,11 +145,6 @@ window.addEventListener('resize',function(){W=canvas.width=window.innerWidth;H=c
 initAll();
 animasi();
 
-// =============================================
-// TANGGAL & UMUR WEB
-// =============================================
-
-// Nama hari dan bulan dalam bahasa Indonesia
 var namaHari  = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
 var namaBulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
                  'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
@@ -166,8 +158,7 @@ function updateTanggal() {
 
   tanggalEl.textContent = hari + ', ' + tanggal + ' ' + bulan + ' ' + tahun;
 
-  // Tanggal web dibangun: 14 Juli 2026 (dari commit pertama)
-  var tanggalLahir = new Date(2026, 6, 14); // bulan ke-6 = Juli (0-indexed)
+  var tanggalLahir = new Date(2026, 6, 14);
   var selisihMs    = sekarang - tanggalLahir;
   var selisihHari  = Math.floor(selisihMs / (1000 * 60 * 60 * 24));
 
@@ -177,34 +168,25 @@ function updateTanggal() {
 updateTanggal();
 setInterval(updateTanggal, 60000);
 
-// Isi tahun copyright otomatis
 document.getElementById('tahun-copyright').textContent = new Date().getFullYear();
 
-// =============================================
-// SUARA - semua file ada di folder sound.se/
-// =============================================
-
-// Checkbox tugas selesai
 var suaraCheckboxAudio = new Audio('sound.se/freesound_community-music-box-98027.mp3');
 suaraCheckboxAudio.volume = 0.6;
 
-// Hapus tugas
 var suaraHapusAudio = new Audio('sound.se/freesound_community-crumple-03-40747.mp3');
 suaraHapusAudio.volume = 0.6;
 
-// Alarm saat timer selesai
 var suaraAlarmAudio = new Audio('sound.se/taureon-clip_10_drippling_drops_short-3060.mp3');
 suaraAlarmAudio.volume = 0.8;
 
-// Tombol Start, Pause, Reset
 var suaraTombolAudio = new Audio('sound.se/universfield-bubble-pop-293342.mp3');
 suaraTombolAudio.volume = 0.5;
 
 var alarmId         = null;
-var alarmAktif      = false; // flag global: alarm sedang berbunyi atau tidak
+var alarmAktif      = false; 
 
 function mulaiAlarm() {
-  if (alarmAktif) return; // jangan dobel
+  if (alarmAktif) return; 
   alarmAktif = true;
 
   suaraAlarmAudio.currentTime = 0;
@@ -243,14 +225,8 @@ function suaraTombol() {
 
 var jam = new Date().getHours();
 
-// =============================================
-// TEMA WARNA BERDASARKAN WAKTU
-// =============================================
-
-// Definisi tema per waktu
 var TEMA = {
   pagi: {
-    // Langit pagi: kuning-oranye hangat
     bg:        '#fff8f0',
     bgCanvas:  'rgba(255,248,240,0.18)',
     surface:   'rgba(255,245,230,0.9)',
@@ -264,7 +240,6 @@ var TEMA = {
     ]
   },
   siang: {
-    // Langit siang: biru cerah
     bg:        '#f0f9ff',
     bgCanvas:  'rgba(240,249,255,0.18)',
     surface:   'rgba(224,242,254,0.9)',
@@ -278,7 +253,6 @@ var TEMA = {
     ]
   },
   sore: {
-    // Langit sore: oranye-pink sunset
     bg:        '#fff1f2',
     bgCanvas:  'rgba(255,241,242,0.18)',
     surface:   'rgba(254,226,226,0.9)',
@@ -292,7 +266,6 @@ var TEMA = {
     ]
   },
   malam: {
-    // Langit malam: biru gelap neon
     bg:        '#050510',
     bgCanvas:  'rgba(5,5,16,0.18)',
     surface:   'rgba(15,15,40,0.85)',
@@ -316,25 +289,21 @@ function getTema() {
 
 function terapkanTema() {
   var t = getTema();
-  // Update body background
   document.body.style.backgroundColor = t.bg;
   document.body.style.color = t.teks;
 
-  // Update semua section (card)
   var sections = document.querySelectorAll('section');
   for (var i = 0; i < sections.length; i++) {
     sections[i].style.backgroundColor = t.surface;
     sections[i].style.borderColor = t.border;
   }
 
-  // Update canvas background variable — NEON array diperbaharui
   NEON = t.neon;
 
-  // Update warna bgCanvas untuk trail effect
   BGC = t.bgCanvas;
 }
 
-var BGC = 'rgba(5,5,16,0.18)'; // akan di-override oleh terapkanTema
+var BGC = 'rgba(5,5,16,0.18)'; 
 terapkanTema();
 
 if (jam >= 5 && jam < 12) {
@@ -361,8 +330,8 @@ setInterval(updateJam, 1000);
 var sisaWaktu    = 25 * 60;
 var durasiWaktu  = 25 * 60;
 var timerId      = null;
-var waktuMulai   = null; // timestamp saat Start ditekan
-var sisaWaktuPause = 25 * 60; // sisa waktu saat Pause ditekan
+var waktuMulai   = null; 
+var sisaWaktuPause = 25 * 60; 
 
 var displayWaktu = document.getElementById('time');
 var statusTimer  = document.getElementById('timer-status');
@@ -397,18 +366,15 @@ document.getElementById('timer-form').addEventListener('submit', function (e) {
   statusTimer.textContent = 'Durasi diatur: ' + nilai + ' menit. Siap fokus.';
 });
 
-// Tombol Start
 document.getElementById('start').addEventListener('click', function () {
   if (timerId !== null) return;
   suaraTombol();
 
-  // Catat waktu mulai berdasarkan sisa waktu sebelumnya
   waktuMulai = Date.now() - ((durasiWaktu - sisaWaktuPause) * 1000);
 
   statusTimer.textContent = 'Sedang berjalan...';
 
   timerId = setInterval(function () {
-    // Hitung sisa waktu dari selisih timestamp — akurat meski browser delay
     var terlewat = Math.floor((Date.now() - waktuMulai) / 1000);
     sisaWaktu = durasiWaktu - terlewat;
 
@@ -424,7 +390,7 @@ document.getElementById('start').addEventListener('click', function () {
     }
 
     tampilkanWaktu();
-  }, 500); // cek setiap 500ms supaya tampilan lebih responsif
+  }, 500); 
 });
 
 document.getElementById('stop').addEventListener('click', function () {
@@ -432,7 +398,7 @@ document.getElementById('stop').addEventListener('click', function () {
   suaraTombol();
   clearInterval(timerId);
   timerId = null;
-  sisaWaktuPause = sisaWaktu; // simpan sisa waktu saat dijeda
+  sisaWaktuPause = sisaWaktu;
   hentikanAlarm();
   statusTimer.textContent = 'Dijeda';
 });
@@ -454,9 +420,6 @@ var inputDeadline = document.getElementById('todo-deadline');
 var listTugas     = document.getElementById('todo-list');
 var pesanKosong   = document.getElementById('todo-empty');
 
-// =============================================
-// NOTIFIKASI BROWSER - minta izin saat halaman dibuka
-// =============================================
 if ('Notification' in window && Notification.permission === 'default') {
   Notification.requestPermission();
 }
@@ -467,10 +430,7 @@ function kirimNotifikasi(judul, pesan) {
   }
 }
 
-// =============================================
-// ALARM TODO - cek deadline setiap menit
-// =============================================
-var deadlineYangSudahBerbunyi = {}; // simpan id tugas yang sudah diingatkan
+var deadlineYangSudahBerbunyi = {}; 
 
 function cekDeadlineTugas() {
   var todos    = ambilTugas();
@@ -479,14 +439,12 @@ function cekDeadlineTugas() {
   for (var i = 0; i < todos.length; i++) {
     var tugas = todos[i];
 
-    // Lewati tugas yang sudah selesai atau tidak punya deadline
     if (tugas.selesai || !tugas.deadline) continue;
 
     var waktuDeadline = new Date(tugas.deadline);
     var selisihMs     = waktuDeadline - sekarang;
     var selisihMenit  = Math.floor(selisihMs / 60000);
 
-    // Ingatkan 10 menit sebelum deadline
     if (selisihMenit <= 10 && selisihMenit > 0 && !deadlineYangSudahBerbunyi[tugas.id + '_10']) {
       deadlineYangSudahBerbunyi[tugas.id + '_10'] = true;
       suaraAlarmAudio.currentTime = 0;
@@ -497,7 +455,6 @@ function cekDeadlineTugas() {
       );
     }
 
-    // Ingatkan saat tepat deadline atau sudah lewat (dalam 1 menit)
     if (selisihMenit <= 0 && selisihMenit > -1 && !deadlineYangSudahBerbunyi[tugas.id + '_0']) {
       deadlineYangSudahBerbunyi[tugas.id + '_0'] = true;
       mulaiAlarm();
@@ -509,7 +466,6 @@ function cekDeadlineTugas() {
   }
 }
 
-// Cek deadline setiap 30 detik
 setInterval(cekDeadlineTugas, 30000);
 
 function ambilTugas() {
@@ -583,7 +539,6 @@ function tampilkanTugas() {
         teks.className = 'selesai';
       }
 
-      // Tampilkan deadline jika ada
       var infoDeadline = document.createElement('span');
       if (tugas.deadline) {
         var tglDeadline = new Date(tugas.deadline);
@@ -593,7 +548,6 @@ function tampilkanTugas() {
         var jam  = String(tglDeadline.getHours()).padStart(2, '0');
         var mnt  = String(tglDeadline.getMinutes()).padStart(2, '0');
 
-        // Tandai merah kalau sudah lewat dan belum selesai
         var sudahLewat = (new Date() > tglDeadline) && !tugas.selesai;
         infoDeadline.className = sudahLewat ? 'deadline deadline--lewat' : 'deadline';
         infoDeadline.textContent = tgl + ' ' + bln + ' ' + thn + ' ' + jam + ':' + mnt;
@@ -637,10 +591,10 @@ function tambahTugas() {
   }
 
   todos.push({ 
-    id:       Date.now(),          // id unik berdasarkan waktu
+    id:       Date.now(),
     teks:     teks, 
     selesai:  false,
-    deadline: inputDeadline.value  // kosong string jika tidak diisi
+    deadline: inputDeadline.value
   });
   simpanTugas(todos);
 
